@@ -8,12 +8,14 @@ import StrainsList from "../StrainsList/StrainsList";
 import Reviews from "../Reviews/Reviews";
 
 const Grower = (props) => {
-  const [strainTabSelected, setStrainTabSelected] = useState(0);
-  const [strain, setStrain] = useState();
+  const [growerTabSelected, setGrowerTabSelected] = useState(0);
+  const [grower, setGrower] = useState();
   const { match } = props;
 
+  
+
   const handleChange = (event, newValue) => {
-    setStrainTabSelected(newValue);
+    setGrowerTabSelected(newValue);
   };
 
   useEffect(() => {
@@ -31,18 +33,28 @@ const Grower = (props) => {
       )
       .then((response) => {
         const responseStrain = response.data.data;
-        setStrain(responseStrain);
+        setGrower(responseStrain);
       })
       .catch(function (error) {
         console.log(error);
+        const grower = {
+          key: 1,
+          title: "Bob Green House",
+          area: "Randburg",
+          image: "https://dummyimage.com/600x400/0f0/fff&text=LOGO",
+          imageTitle: "logo",
+        };
+        setGrower(grower);
+        
       });
   }, []);
 
   return (
     <>
       <AppBar style={{ marginTop: "56px" }}>
+        <h1>{grower && grower.title}</h1>
         <Tabs
-          value={strainTabSelected}
+          value={growerTabSelected}
           onChange={handleChange}
           aria-label="simple tabs example"
         >
@@ -52,9 +64,9 @@ const Grower = (props) => {
         </Tabs>
       </AppBar>
       <div style={{ width: "100%", marginTop: 55 }}>
-        {strainTabSelected === 0 && strain && <About strain={strain} />}
-        {strainTabSelected === 1 && <StrainsList />}
-        {strainTabSelected === 2 && <Reviews />}
+        {growerTabSelected === 0 && grower && <About strain={grower} />}
+        {/* {growerTabSelected === 1 && <StrainsList />} */}
+        {growerTabSelected === 2 && <Reviews />}
       </div>
     </>
   );

@@ -81,7 +81,7 @@ class App extends Component {
     if (localStorage.getItem("user_token") != null) {
       this.state.isLoggedIn = true;
     } else {
-      this.state.isLoggedIn = false;
+      this.state.isLoggedIn = true;
     }
   }
 

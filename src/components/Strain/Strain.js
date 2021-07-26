@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { Tabs, Tab, AppBar } from "@material-ui/core";
 import About from "./inc/About";
-import Growers from "../Growers/Growers";
+import StrainGrower from "./inc/StrainGrower";
 import Reviews from "../Reviews/Reviews";
 
 const Strain = (props) => {
@@ -18,6 +18,7 @@ const Strain = (props) => {
   useEffect(() => {
     const token = localStorage.getItem("user_token");
     console.log("match", match);
+    console.log("strain", props.strains[0]);
     axios
       .get(
         "https://api.almondfactory.app/strains/get/" + match.params.strainID,
@@ -34,6 +35,8 @@ const Strain = (props) => {
       })
       .catch(function (error) {
         console.log(error);
+        // set manual override
+        setStrain(props.strains[0]);
       });
   }, []);
 
@@ -53,7 +56,7 @@ const Strain = (props) => {
       </AppBar>
       <div style={{ width: "100%", marginTop: 55 }}>
         {strainTabSelected === 0 && strain && <About strain={strain} />}
-        {strainTabSelected === 1 && <Growers />}
+        {strainTabSelected === 1 && <StrainGrower />}
         {strainTabSelected === 2 && <Reviews />}
       </div>
     </>

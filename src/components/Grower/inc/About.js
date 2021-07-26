@@ -5,7 +5,8 @@ import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 
 const About = (props) => {
-  var grower = props.grower;
+  var strain = props.strain;
+  console.log('strain',strain);
   // var flavors = strain.flavor ? strain.flavor.split(",") : 0;
   // var effects = strain.effect ? strain.effect.split(",") : 0;
   return (
@@ -13,7 +14,7 @@ const About = (props) => {
       <Grid container spacing={1} style={{ paddingTop: 70 }}>
         <Grid container item xs={12}>
           <Typography component="h2" variant="h3">
-            {/* {strain.name} */}
+            {strain.title}
           </Typography>
           <Card></Card>
         </Grid>
