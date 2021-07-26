@@ -1,6 +1,6 @@
 // import { Component } from "react";
 // import { Page, Input } from "react-onsenui";
-import React, { useRef } from "react";
+import React, { useRef , useState} from "react";
 import { useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -60,6 +60,12 @@ const Register = (props) => {
   const phoneEl = useRef(null);
   const passwordEl = useRef(null);
 
+  const [usernameError,setUsernameError] = useState('')
+  const [emailError,setEmailError] = useState('')
+  const [phoneError,setPhoneError] = useState('')
+  const [passwordError,setPasswordError] = useState('')
+
+
   const inputProps = {
     username: {
       ref: usernameEl,
@@ -77,6 +83,11 @@ const Register = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setUsernameError(false)
+    setPasswordError(false)
+    setEmailError(false)
+    setPhoneError(false)
+
 
     const data = {
       username: usernameEl.current.value,
@@ -98,6 +109,10 @@ const Register = (props) => {
         history.push(`${process.env.PUBLIC_URL}/login`);
       })
       .catch(function (error) {
+        setUsernameError(true)
+        setPasswordError(true)
+        setEmailError(true)
+        setPhoneError(true)
         console.log(error);
       });
 
@@ -128,6 +143,8 @@ const Register = (props) => {
                   label="Username"
                   inputProps={inputProps.username}
                   autoFocus
+                  error={usernameError}
+                  helperText={usernameError ? 'Invalid User  Name':''}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -141,6 +158,8 @@ const Register = (props) => {
                   autoComplete="email"
                   inputProps={inputProps.email}
                   type="email"
+                  error={emailError}
+                  helperText={emailError ? 'Invalid Email Address':''}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -153,6 +172,8 @@ const Register = (props) => {
                   name="number"
                   autoComplete="number"
                   inputProps={inputProps.phone}
+                  error={phoneError}
+                  helperText={phoneError ? 'Invalid Phone Number':''}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -166,6 +187,8 @@ const Register = (props) => {
                   id="password"
                   autoComplete="current-password"
                   inputProps={inputProps.password}
+                  error={passwordError}
+                  helperText={passwordError ? 'Invalid Password':''}
                 />
               </Grid>
               <Grid item xs={12}>
