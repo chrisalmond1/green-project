@@ -44,7 +44,9 @@ class StrainsList extends Component {
   render() {
     var strains = "";
     console.log("strains", this.props.strains);
+    // show loading while waiting
     if (this.props.strains.length > 0) {
+      // loop strains
       strains = this.props.strains.map((item) => {
         return (
           <StrainSingle
