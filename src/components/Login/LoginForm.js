@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef , useState} from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -55,8 +55,14 @@ function LoginForm(props) {
   const passwordEl = useRef(null);
   const rememberMeEl = useRef(null);
 
+  const [usernameError,setUsernameError] = useState('')
+  const [passwordError,setPasswordError] = useState('')
+
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    setUsernameError(false)
+    setPasswordError(false)
 
     const data = {
       username: nameEl.current.value,
@@ -79,6 +85,8 @@ function LoginForm(props) {
         props.history.push(`${process.env.PUBLIC_URL}/home`);
       })
       .catch(function (error) {
+          setUsernameError(true)
+          setPasswordError(true)
         // handler errors here
       });
   };
@@ -114,6 +122,8 @@ function LoginForm(props) {
             autoComplete="email"
             inputProps={inputProps.username}
             autoFocus
+            error={usernameError}
+            helperText={usernameError ? 'Invalid UserName':''}
           />
 
           <TextField
@@ -127,6 +137,8 @@ function LoginForm(props) {
             id="password"
             inputProps={inputProps.password}
             autoComplete="current-password"
+            error={passwordError}
+            helperText={passwordError ? 'Invalid Password':''}
           />
           <FormControlLabel
             control={
