@@ -40,6 +40,11 @@ const Drawer = (props) => {
           url: "/growers",
         },
         {
+          text: "Green House",
+          icon: <LocalFloristIcon />,
+          url: "/greenhouse",
+        },
+        {
           text: "Account",
           icon: <AccountCircleIcon />,
           url: "/about",
