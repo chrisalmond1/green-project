@@ -33,11 +33,13 @@ class StrainsList extends Component {
           console.log("test");
           console.log("main repsonse", response.data.data);
           const strains = response.data.data;
-          this.props.loadStrains(strains);
+          this.props.setStrain(strains);
         })
         .catch(function (error) {
           console.log(error);
         });
+    } else {
+      console.log("strains have been set");
     }
   }
 

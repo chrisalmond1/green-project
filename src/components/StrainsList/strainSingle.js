@@ -20,8 +20,8 @@ class StrainSingle extends Component {
     }
     var effects = [];
 
-    console.log("this.item ", this.item);
-    console.log("this.props.strain ", this.props.strain);
+    // console.log("this.item ", this.item);
+    // console.log("this.props.strain ", this.props.strain);
     if (
       this.props.strain.effect !== "None" &&
       this.props.strain.effect.length > 0
