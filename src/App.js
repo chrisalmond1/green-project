@@ -10,6 +10,7 @@ import Drawer from "./components/Drawer/Drawer";
 import Home from "./components/Home/Home";
 import Growers from "./components/Growers/Growers";
 import GreenHouse from "./components/GreenHouse/GreenHouse";
+import Account from "./components/Account/Account"
 import Container from "@material-ui/core/Container";
 
 class App extends Component {
@@ -168,6 +169,14 @@ class App extends Component {
               <Route path={`${process.env.PUBLIC_URL}/greenhouse`}>
                 {this.state.isLoggedIn ? (
                   <GreenHouse />
+                ) : (
+                  <Login loginAction={this.loginAction} />
+                )}
+              </Route>
+
+              <Route path={`${process.env.PUBLIC_URL}/account`}>
+                {this.state.isLoggedIn ? (
+                  <Account />
                 ) : (
                   <Login loginAction={this.loginAction} />
                 )}

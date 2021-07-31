@@ -47,7 +47,7 @@ const Drawer = (props) => {
         {
           text: "Account",
           icon: <AccountCircleIcon />,
-          url: "/about",
+          url: "/account",
         },
       ]
     : [];
